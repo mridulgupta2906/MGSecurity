@@ -4,6 +4,7 @@ const hasura=require('./controller/controller-hasurahit')
 const accessdb=require('./controller/controller-accessdatabase');
 const automation=require('./controller/controller-logs');
 const { accessSync } = require('fs');
+const user=require('./controller/controller-user');
 
 //  testing of server
 router.post('/check',(req,res)=>{
@@ -27,6 +28,13 @@ router.post('/check',(req,res)=>{
 
 // LOGS TABLE
 router.post('/vehicleEntryInLogs',automation.vehicleEntryInLogs)
+router.post('/getalllogs',automation.getalllogs);
+
+
+
+//  USER TABLE 
+router.post('/createuser',user.createuser)
+router.post('/getalluser',user.getalluser);
 
 
 module.exports=router;

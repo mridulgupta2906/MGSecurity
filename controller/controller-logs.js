@@ -123,3 +123,35 @@ module.exports.vehicleEntryInLogs=async(req,res)=>{
         console.log("error : (controller-automation-->entryinlogs()) :: ",error)
     }
 }
+
+
+
+module.exports.getalllogs=async(req,res)=>{
+    try
+    {
+        let details=await model.getalllogs();
+        if(details.rowCount>0)
+            {
+                return res.status(200).json({
+                    status:"success",
+                    statusCode:200,
+                    message:"all data from logs table",
+                    data:details.rows
+                })
+            }
+            else
+            {
+                return res.status(200).json({
+                    status:"error",
+                    statusCode:400,
+                    message:"details.rowCount is not > 0",
+                    data:[]
+                })
+            }
+    }
+    catch(error)
+    {
+        console.log("error : (controller-automation-->getalllogs()) :: ",error.message)
+
+    }
+}

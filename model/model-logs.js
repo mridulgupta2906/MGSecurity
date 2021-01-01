@@ -40,7 +40,7 @@ module.exports.vechileentryinlogs=async(vehicle_details,vehicleno)=>{
         console.log("INSERTING VECHILE ENTRY IN LOGS hitted 3");
         let sqlQuery=`insert into "logs" (vehicleno,date,time,status,addressid,vehicle_details) values($1,$2,$3,$4,$5,$6)`;
         let data=[];
-        let Json=await numberPlateCheckInDatabase(vechileno);
+        let Json=await numberPlateCheckInDatabase(vehicleno);
         let status=Json.status;
         let addressid=Json.addressid;
         let time=new Date().toLocaleTimeString();
@@ -65,4 +65,25 @@ module.exports.vechileentryinlogs=async(vehicle_details,vehicleno)=>{
 
         }
 
+}
+
+
+module.exports.getalllogs=async()=>{
+    let sqlQuery=`select * from "logs"`;
+    let data=[];
+    let client =await dbUtil.getTransaction();
+    try
+    {
+        let result=await dbUtil.sqlExecSingleRow(client,sqlQuery,data);
+        if(result.rowCount>0)
+        {
+            await dbUtil.commit(client);
+            return result;
+        }
+    }
+    catch(error)
+    {
+        console.log("error : (model-logs--->getalllogs) :: ",error.message)
+        await dbUtil.rollback(client);
+    }
 }
