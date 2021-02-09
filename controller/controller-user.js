@@ -116,7 +116,7 @@ module.exports.addvechileno=async(req,res)=>{
     if(todo=='remove')
         {result=await model.removevechileno(username,vehicleno);check++;console.log("1.2")}
     
-    if(check)
+    if(result)
     {
             return res.status(200).json({
                 status:"success",
