@@ -116,7 +116,7 @@ module.exports.addvechileno=async(req,res)=>{
     if(todo=='remove')
         {result=await model.removevechileno(username,vehicleno);}
     
-    if(result.rowCount>0)
+    if(result)
     {
             return res.status(200).json({
                 status:"success",
@@ -137,6 +137,7 @@ module.exports.addvechileno=async(req,res)=>{
     }
     catch(error)
     {
-        console.log("error (controller-user--->getalluser()):",error.message);
+        console.log("error (controller-user--->addvechileno()):",error.message);
+        console.log(error);
     }
 }
