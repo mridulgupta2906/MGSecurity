@@ -113,7 +113,7 @@ module.exports.addvechileno=async(req,res)=>{
     let result;
     if(todo=='add')
         {result=await model.addvechileno(username,vehicleno);}
-    else
+    if(todo=='remove')
         {result=await model.removevechileno(username,vehicleno);}
     
     if(result.rowCount>0)

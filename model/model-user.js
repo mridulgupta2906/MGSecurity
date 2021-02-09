@@ -125,7 +125,7 @@ module.exports.removevechileno=async(username,vehicleno)=>{
             }
         }
     }
-    catch(err)
+    catch(error)
     {
         console.log("error : (model-user--->addvechileno())  ::",error.message)
         await dbUtil.rollback(client);
