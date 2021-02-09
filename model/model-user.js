@@ -76,7 +76,7 @@ module.exports.addvechileno=async(username,vehicleno)=>{
         {
             let arr=result.vehicle;
             arr.push(vehicleno);
-            data2=arr;
+            data2=[username,arr];
             let result2=await dbUtil.sqlExecSingleRow(client,sqlQuery2,data2);
             if(result2)
             {
@@ -116,7 +116,7 @@ module.exports.removevechileno=async(username,vehicleno)=>{
                     { brr[j]=arr[i];j++;}
                 }
             }
-            data2=brr;
+            data2=[username,brr];
             let result2=await dbUtil.sqlExecSingleRow(client,sqlQuery2,data2);
             if(result2)
             {
