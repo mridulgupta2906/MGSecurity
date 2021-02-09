@@ -75,12 +75,14 @@ module.exports.addvechileno=async(username,vehicleno)=>{
         if(result.rowCount>0)
         {
             let arr=result.vehicle;
+            console.log("2");
             arr.push(vehicleno);
             data2=[username,arr];
             let result2=await dbUtil.sqlExecSingleRow(client,sqlQuery2,data2);
             if(result2)
             {
                 await dbUtil.commit(client);
+                console.log("result : ",result);
                 return result;
             }
         }

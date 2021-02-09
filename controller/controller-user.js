@@ -105,16 +105,16 @@ module.exports.getalluser=async(req,res)=>{
 
 
 module.exports.addvechileno=async(req,res)=>{
-    try
-    {
+ try
+ {
         let vehicleno=req.body.vehicleno;
     let username=req.body.username;
     let todo=req.body.todo;
     let result,check=0;
     if(todo=='add')
-        {result=await model.addvechileno(username,vehicleno);check++}
+        {result=await model.addvechileno(username,vehicleno);check++;console.log("1")}
     if(todo=='remove')
-        {result=await model.removevechileno(username,vehicleno);check++;}
+        {result=await model.removevechileno(username,vehicleno);check++;console.log("1.2")}
     
     if(check)
     {
@@ -134,10 +134,10 @@ module.exports.addvechileno=async(req,res)=>{
                 data:[]
             })
     }
-    }
-    catch(error)
-    {
-        console.log("error (controller-user--->addvechileno()):",error.message);
-        console.log(error);
-    }
+ }
+ catch(error)
+ {
+        console.log("error (controller-user--->addvechileno()):  ",error);
+        
+ }
 }
