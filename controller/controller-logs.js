@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 const sharp=require('sharp')
 const firebase=require('../firebase')
 const model=require('../model/model-logs');
@@ -57,6 +57,7 @@ module.exports.vehicleEntryInLogs=async(req,res)=>{
     {
         console.log("entryinlogs hitted 1")
         let numberplate=req.body.numberplate;
+        let imgbuffer=req.body.imgbuffer;
         let imgUrl=await giveNumberPlateDetails(numberplate,imgbuffer);
         if(imgUrl!=null)
         {
