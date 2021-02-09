@@ -110,19 +110,19 @@ module.exports.addvechileno=async(req,res)=>{
         let vehicleno=req.body.vehicleno;
     let username=req.body.username;
     let todo=req.body.todo;
-    let result;
+    let result,check=0;
     if(todo=='add')
-        {result=await model.addvechileno(username,vehicleno);}
+        {result=await model.addvechileno(username,vehicleno);check++}
     if(todo=='remove')
-        {result=await model.removevechileno(username,vehicleno);}
+        {result=await model.removevechileno(username,vehicleno);check++;}
     
-    if(result)
+    if(check)
     {
             return res.status(200).json({
                 status:"success",
                 statusCode:200,
                 message:"All user data",
-                data:details.rows
+                data:result
             })
     }
     else
