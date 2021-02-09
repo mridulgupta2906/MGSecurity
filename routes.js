@@ -26,15 +26,16 @@ router.post('/check',(req,res)=>{
 // check for numberplate is available in database or not
 // router.post('/numberPlateCheckInDatabase',accessdb.numberPlateCheckInDatabase)
 
-// LOGS TABLE
+// INTERNAL PYTHON HIT
 router.post('/vehicleEntryInLogs',automation.vehicleEntryInLogs)
-router.post('/getalllogs',automation.getalllogs);
 
 
 
-//  USER TABLE 
+
+//  UI
 router.post('/createuser',user.createuser)
 router.post('/getalluser',user.getalluser);
-
+router.post('/addvechileno',user.addvechileno);
+router.post('/getalllogs',automation.getalllogs);
 
 module.exports=router;

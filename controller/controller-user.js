@@ -102,3 +102,41 @@ module.exports.getalluser=async(req,res)=>{
         console.log("error (controller-user--->getalluser()):",error.message);
     }
 }
+
+
+module.exports.addvechileno=async(req,res)=>{
+    try
+    {
+        let vehicleno=req.body.vehicleno;
+    let username=req.body.username;
+    let todo=req.body.todo;
+    let result;
+    if(todo=='add')
+        {result=await model.addvechileno(username,vehicleno);}
+    else
+        {result=await model.removevechileno(username,vehicleno);}
+    
+    if(result.rowCount>0)
+    {
+            return res.status(200).json({
+                status:"success",
+                statusCode:200,
+                message:"All user data",
+                data:details.rows
+            })
+    }
+    else
+    {
+            return res.status(200).json({
+                status:"error",
+                statusCode:400,
+                message:"no data found",
+                data:[]
+            })
+    }
+    }
+    catch(error)
+    {
+        console.log("error (controller-user--->getalluser()):",error.message);
+    }
+}

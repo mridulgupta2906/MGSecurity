@@ -2,6 +2,8 @@ const puppeteer = require('puppeteer');
 const sharp=require('sharp')
 const firebase=require('../firebase')
 const model=require('../model/model-logs');
+var userAgent = require('user-agents');
+
 
 const giveNumberPlateDetails=async(numberplate)=>{
     console.log("giveNumberPlateDetails hitted 2")
@@ -11,7 +13,7 @@ const giveNumberPlateDetails=async(numberplate)=>{
     //     }); 
     // const page = await browser.newPage(); 
     const chromeOptions = {
-        headless: true,
+        headless: false,
         defaultViewport: null,
         args: [
             "--incognito",
@@ -22,6 +24,8 @@ const giveNumberPlateDetails=async(numberplate)=>{
     };
     const browser = await puppeteer.launch(chromeOptions);
     const page = await browser.newPage();
+    await page.setUserAgent('5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36');
+
     await page.goto('http://mis.mptransport.org/MPLogin/eSewa/VehicleSearch.aspx',{ waitUntil: 'networkidle2' });
     await page.type('#ctl00_ContentPlaceHolder1_txtRegNo',numb)
     console.log(page.click('#ctl00_ContentPlaceHolder1_btnShow'))
@@ -47,47 +51,6 @@ const giveNumberPlateDetails=async(numberplate)=>{
     return imgurl;
 }
 
-
-//mp11mw8141
-
-// await sleep(8000);
-//     const elements = await page.$x('//*[@id="ctl00_ContentPlaceHolder1_grvSearchSummary"]/tbody/tr[2]/td[2]/input')
-//     await elements[0].click() 
-//     await sleep(10000);
-//    const screenshotbuffer=await page.screenshot({encoding:'binary'});
-//    console.log(screenshotbuffer)
-//     await sharp(inputBuffer).toFile('output.webp', (err, info) => {console.log("error ",err)});
-//     await browser.close();
-
-
-
-
-
-
-
-// <!-- The core Firebase JS SDK is always required and must be listed first -->
-// <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-
-// <!-- TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#available-libraries -->
-// <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
-
-// <script>
-//   // Your web app's Firebase configuration
-//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-//   var firebaseConfig = {
-//     apiKey: "AIzaSyCeVd9OvexYVBJLR6To1wbc-nYvD7bFpTI",
-//     authDomain: "mgsecurity-2020.firebaseapp.com",
-//     projectId: "mgsecurity-2020",
-//     storageBucket: "mgsecurity-2020.appspot.com",
-//     messagingSenderId: "544540011511",
-//     appId: "1:544540011511:web:566499649f00e68a291cf2",
-//     measurementId: "G-MTND0GDYBY"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-// </script>
 
 module.exports.vehicleEntryInLogs=async(req,res)=>{
     try
