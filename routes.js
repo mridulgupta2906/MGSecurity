@@ -27,7 +27,7 @@ router.post('/check',(req,res)=>{
 // router.post('/numberPlateCheckInDatabase',accessdb.numberPlateCheckInDatabase)
 
 // INTERNAL PYTHON HIT
-router.post('/vehicleEntryInLogs',automation.vehicleEntryInLogs)
+router.post('/vehicleEntryInLogs',automation.vehicleEntryInLogs)  // number plate no and image buffer to be sent by python
 
 
 
