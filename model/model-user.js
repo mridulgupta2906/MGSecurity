@@ -75,10 +75,7 @@ module.exports.addvechileno=async(username,vehicleno)=>{
         if(result.rowCount>0)
         {
             let arr=[];
-            arr=result.vehicle;
-            console.log("result : ",result);
-            console.log("arr : ",arr);
-            console.log("typeof arr : ",typeof arr);
+            arr=result.rows.vehicle;
             arr.push(vehicleno);
             data2=[username,arr];
             let result2=await dbUtil.sqlExecSingleRow(client,sqlQuery2,data2);
@@ -110,7 +107,7 @@ module.exports.removevechileno=async(username,vehicleno)=>{
         let result=await dbUtil.sqlExecSingleRow(client,sqlQuery,data);
         if(result.rowCount>0)
         {
-            let arr=result.vehicle;
+            let arr=result.rows.vehicle;
             let brr=[],j=0;
             if(arr.length>0)
             {
