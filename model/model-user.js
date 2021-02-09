@@ -76,7 +76,7 @@ module.exports.addvechileno=async(username,vehicleno)=>{
         {
             let arr=[];
             arr=result.vehicle;
-            console.log("2");
+            console.log("result : ",result);
             console.log("arr : ",arr);
             console.log("typeof arr : ",typeof arr);
             arr.push(vehicleno);
