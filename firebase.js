@@ -34,39 +34,72 @@ const uploadImageToStorage = async (path, imagebuffer) => {
 		// console.log("inside storage upload")
 		let newFileName = `/${path}`;
 
-		let fileUploadBucket = bucket.file(newFileName);
-		// console.log(file.mimetype);
-		const token = uuid.v4();
+		// let fileUploadBucket = bucket.file(newFileName);
+		// // console.log(file.mimetype);
+		// const token = uuid.v4();
 
-		const blobStream = fileUploadBucket.createWriteStream({
-			metadata: {
-				contentType: "image/jpeg",
-				metadata: {
-					firebaseStorageDownloadTokens: token,
-				},
-			},
-			resumable: false,
-			timeout: 30000
-		});
+		// const blobStream = fileUploadBucket.createWriteStream({
+		// 	metadata: {
+		// 		contentType: "image/jpeg",
+		// 		metadata: {
+		// 			firebaseStorageDownloadTokens: token,
+		// 		},
+		// 	},
+		// 	resumable: false,
+		// 	timeout: 30000
+		// });
 
-		blobStream.on('error', (error) => {
-			console.log(error);
-			reject('Something is wrong! Unable to upload at the moment.');
-		});
-		blobStream.on("finish", () => {
-			// The public URL can be used to directly access the file via HTTP.
-			// const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUploadBucket.name}`);
-			const url =
-				"https://firebasestorage.googleapis.com/v0/b/" +
-				bucket.name +
-				"/o/" +
-				encodeURIComponent(newFileName) +
-				"?alt=media&token=" +
-				token;
-			resolve(url);
-		});
-		let finalimageBuffer=imagebuffer;
-		blobStream.end(finalimageBuffer);
+		// blobStream.on('error', (error) => {
+		// 	console.log(error);
+		// 	reject('Something is wrong! Unable to upload at the moment.');
+		// });
+		// blobStream.on("finish", () => {
+		// 	// The public URL can be used to directly access the file via HTTP.
+		// 	// const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUploadBucket.name}`);
+		// 	const url =
+		// 		"https://firebasestorage.googleapis.com/v0/b/" +
+		// 		bucket.name +
+		// 		"/o/" +
+		// 		encodeURIComponent(newFileName) +
+		// 		"?alt=media&token=" +
+		// 		token;
+		// 	resolve(url);
+		// });
+		// let finalimageBuffer=imagebuffer;
+		// blobStream.end(finalimageBuffer);
+		console.log("inside storage upload");
+        //   let newFileName = filePath;
+  
+          let fileUploadBucket = bucket.file(newFileName);
+          // console.log(file.mimetype);
+          const token = uuid.v4();
+  
+          const blobStream = fileUploadBucket.createWriteStream({
+            metadata: {
+              contentType: file.mimetype ? file.mimetype : "image/jpeg",
+              metadata: {
+                firebaseStorageDownloadTokens: token,
+              },
+            },
+          });
+  
+          // blobStream.on('error', (error) => {
+          //   reject('Something is wrong! Unable to upload at the moment.');
+          // });
+          blobStream.on("finish", () => {
+            // The public URL can be used to directly access the file via HTTP.
+            // const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUploadBucket.name}`);
+            const url =
+              "https://firebasestorage.googleapis.com/v0/b/" +
+              bucket.name +
+              "/o/" +
+              encodeURIComponent(newFileName) +
+              "?alt=media&token=" +
+              token;
+            resolve(url);
+          });
+  
+          blobStream.end(imagebuffer);
   });	           
 };
 
