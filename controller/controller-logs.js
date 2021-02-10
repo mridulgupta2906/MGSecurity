@@ -37,7 +37,7 @@ const giveNumberPlateDetails=async(numberplate,imgbuffer)=>{
 //     await elements[0].click() 
 //     await sleep(10000);
 //    const screenshotbuffer=await page.screenshot({encoding:'binary'});
-   let path=`${numb}`;
+   let path=`today`;
    let imgurl=await firebase.uploadToFirebase(path,imgbuffer);
 //    console.log(screenshotbuffer)
    // await sharp(screenshotbuffer).toFile('image.png', (err, info) => {console.log("error ",err)});
