@@ -1,6 +1,8 @@
 const router=require('express').Router();
 // const sharp = require('sharp');
 const fs = require("fs");
+var base64Img = require('base64-img');
+
 
 
 const hasura=require('./controller/controller-hasurahit')
@@ -43,14 +45,15 @@ router.post('/addvechileno',user.addvechileno);
 router.post('/getalllogs',automation.getalllogs);
 
 //image test
-// router.post('/image',(req,res)=>{
-//     let imgbuffer=req.body.imgbuffer;
-//     // console.log(imgbuffer)
-//     fs.writeFileSync("new-path.jpg", imgbuffer,{encoding:'base64'},function(err){
-//         console.log(err)
-//     });
-//     // sharp(imgbuffer)
-//     // .toFile('output.jpg', (err, info) => {console.log(err)});
-// })
+router.post('/image',(req,res)=>{
+    // let imgbuffer=req.body.imgbuffer;
+    // console.log(imgbuffer)
+    // base64Img.img(imgbuffer, '', '1', function(err, filepath) {});
+    // fs.writeFileSync("new-path.jpg", imgbuffer,{encoding:'base64'},function(err){
+    //     console.log(err)
+    // });
+    // sharp(imgbuffer)
+    // .toFile('output.jpg', (err, info) => {console.log(err)});
+})
 
 module.exports=router;
