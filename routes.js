@@ -1,4 +1,7 @@
 const router=require('express').Router();
+const sharp = require('sharp');
+const fs = require("fs");
+
 
 const hasura=require('./controller/controller-hasurahit')
 const accessdb=require('./controller/controller-accessdatabase');
@@ -37,5 +40,16 @@ router.post('/createuser',user.createuser)
 router.post('/getalluser',user.getalluser);
 router.post('/addvechileno',user.addvechileno);
 router.post('/getalllogs',automation.getalllogs);
+
+//image test
+// router.post('/image',(req,res)=>{
+//     let imgbuffer=req.body.imgbuffer;
+//     // console.log(imgbuffer)
+//     fs.writeFileSync("new-path.jpg", imgbuffer,{encoding:'base64'},function(err){
+//         console.log(err)
+//     });
+//     // sharp(imgbuffer)
+//     // .toFile('output.jpg', (err, info) => {console.log(err)});
+// })
 
 module.exports=router;
