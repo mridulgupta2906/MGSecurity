@@ -4,6 +4,7 @@ const dbUtil=require('../dbUtil')
 
 const numberPlateCheckInDatabase=async(numberplate)=>{
     console.log("numberPlateCheckInDatabase hitted 4")
+    
     let sqlQuery=`select addressid from "address" where $1=any(vehicle)`;
     let data=[numberplate];
     let client =await dbUtil.getTransaction();

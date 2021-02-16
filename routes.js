@@ -40,9 +40,9 @@ router.post('/vehicleEntryInLogs',automation.vehicleEntryInLogs)  // number plat
 
 //  UI
 router.post('/createuser',user.createuser)
-router.post('/getalluser',user.getalluser);
+router.get('/getalluser',user.getalluser);
 router.post('/addvechileno',user.addvechileno);
-router.post('/getalllogs',automation.getalllogs);
+router.get('/getalllogs',automation.getalllogs);
 
 //image test
 router.post('/image',(req,res)=>{
