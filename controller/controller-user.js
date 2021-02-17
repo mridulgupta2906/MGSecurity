@@ -17,7 +17,7 @@ module.exports.createuser=async(req,res)=>{
             {
                 if(cols[i]=='vehicle')
                 {
-                    addresstabledata=addresstabledata+`ARRAY${data[i]},`;
+                    addresstabledata=addresstabledata+`ARRAY[${data[i]}],`;
                     addresstablecols=addresstablecols+`${cols[i]},`;
                 }
                 else
