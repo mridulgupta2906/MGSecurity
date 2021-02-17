@@ -1,5 +1,5 @@
 const model=require('../model/model-user')
-const helper=require('..//helper')
+const helper=require('../helper')
 
 
 module.exports.createuser=async(req,res)=>{

@@ -3,7 +3,7 @@
 const firebase=require('../firebase')
 const model=require('../model/model-logs');
 var userAgent = require('user-agents');
-
+const helper=require('../helper')
 
 const giveNumberPlateDetails=async(numberplate,imgbuffer)=>{
     console.log("giveNumberPlateDetails hitted 2")
@@ -37,7 +37,8 @@ const giveNumberPlateDetails=async(numberplate,imgbuffer)=>{
 //     await elements[0].click() 
 //     await sleep(10000);
 //    const screenshotbuffer=await page.screenshot({encoding:'binary'});
-   let path=`today`;
+   let namenumber=helper.generateUUID();
+   let path=`${namenumber}`;
    let imgurl=await firebase.uploadToFirebase(path,imgbuffer);
 //    console.log(screenshotbuffer)
    // await sharp(screenshotbuffer).toFile('image.png', (err, info) => {console.log("error ",err)});
