@@ -109,13 +109,13 @@ module.exports.addvechileno=async(req,res)=>{
  {
     console.log(req.body.vehicleno);    
     let vehicleno=req.body.vehicleno;
-    let username=req.body.username;
+    let userid=req.body.userid;
     let todo=req.body.todo;
     let result,check=0;
     if(todo=='add')
-        {result=await model.addvechileno(username,vehicleno);check++;console.log("1")}
+        {result=await model.addvechileno(userid,vehicleno);check++;console.log("1")}
     if(todo=='remove')
-        {result=await model.removevechileno(username,vehicleno);check++;console.log("1.2")}
+        {result=await model.removevechileno(userid,vehicleno);check++;console.log("1.2")}
     
     if(result)
     {

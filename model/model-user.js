@@ -63,10 +63,10 @@ module.exports.getalluser=async()=>{
     }
 }
 
-module.exports.addvechileno=async(username,vehicleno)=>{
-    let sqlQuery=`select vehicle from "address" where addressid= (select addressid from "User" where username=$1)`;
+module.exports.addvechileno=async(userid,vehicleno)=>{
+    let sqlQuery=`select vehicle from "address" where addressid= (select addressid from "User" where userid=$1)`;
     let data=[username];
-    let sqlQuery2=`update "address" set vehicle=$2 where addressid=(select addressid from "User" where username=$1)`;
+    let sqlQuery2=`update "address" set vehicle=$2 where addressid=(select addressid from "User" where userid=$1)`;
     let data2=[];
     let client =await dbUtil.getTransaction();
     try
