@@ -107,7 +107,8 @@ module.exports.getalluser=async(req,res)=>{
 module.exports.addvechileno=async(req,res)=>{
  try
  {
-        let vehicleno=req.body.vehicleno;
+    console.log(req.body.vehicleno);    
+    let vehicleno=req.body.vehicleno;
     let username=req.body.username;
     let todo=req.body.todo;
     let result,check=0;
