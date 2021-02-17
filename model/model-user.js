@@ -65,7 +65,7 @@ module.exports.getalluser=async()=>{
 
 module.exports.addvechileno=async(userid,vehicleno)=>{
     let sqlQuery=`select vehicle from "address" where addressid= (select addressid from "User" where userid=$1)`;
-    let data=[username];
+    let data=[userid];
     let sqlQuery2=`update "address" set vehicle=$2 where addressid=(select addressid from "User" where userid=$1)`;
     let data2=[];
     let client =await dbUtil.getTransaction();
@@ -78,7 +78,7 @@ module.exports.addvechileno=async(userid,vehicleno)=>{
             let arr=[];
             arr=result.rows[0].vehicle;
             arr.push(vehicleno);
-            data2=[username,arr];
+            data2=[userid,arr];
             let result2=await dbUtil.sqlExecSingleRow(client,sqlQuery2,data2);
             // console.log("result2 : ",result2);
             if(result2.rowCount>0)
@@ -97,10 +97,10 @@ module.exports.addvechileno=async(userid,vehicleno)=>{
 
 
 
-module.exports.removevechileno=async(username,vehicleno)=>{
-    let sqlQuery=`select vehicle from "address" where addressid= (select addressid from "User" where username=$1)`;
-    let data=[username];
-    let sqlQuery2=`update "address" set vehicle=$2 where addressid=(select addressid from "User" where username=$1)`;
+module.exports.removevechileno=async(userid,vehicleno)=>{
+    let sqlQuery=`select vehicle from "address" where addressid= (select addressid from "User" where userid=$1)`;
+    let data=[userid];
+    let sqlQuery2=`update "address" set vehicle=$2 where addressid=(select addressid from "User" where userid=$1)`;
     let data2=[];
     let client =await dbUtil.getTransaction();
     try
@@ -119,7 +119,7 @@ module.exports.removevechileno=async(username,vehicleno)=>{
                     { brr[j]=arr[i];j++;}
                 }
             }
-            data2=[username,brr];
+            data2=[userid,brr];
             let result2=await dbUtil.sqlExecSingleRow(client,sqlQuery2,data2);
             if(result2.rowCount>0)
             {
