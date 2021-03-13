@@ -4,6 +4,8 @@ const firebase=require('../firebase')
 const model=require('../model/model-logs');
 var userAgent = require('user-agents');
 const helper=require('../helper')
+const fs=require('fs')
+const Jimp = require("jimp");
 
 const giveNumberPlateDetails=async(numberplate,imgbuffer)=>{
     console.log("giveNumberPlateDetails hitted 2")
@@ -58,7 +60,8 @@ module.exports.vehicleEntryInLogs=async(req,res)=>{
     {
         console.log("entryinlogs hitted 1")
         let numberplate=req.body.numberplate;
-        let imgbuffer=req.body.imgbuffer;
+        // let imgbuffer=req.body.imgbuffer;
+        const imgbuffer = await Buffer.from(req.body.imgbuffer, "base64");
         let imgUrl=await giveNumberPlateDetails(numberplate,imgbuffer);
         if(imgUrl!=null)
         {
