@@ -8,9 +8,10 @@ const pgconfig = {
     password: "b31a33b858b23a4d8eb9962fb7e73a6f3523c329b95811e44c94e5f6c4325a5c",
     host: "ec2-52-213-173-172.eu-west-1.compute.amazonaws.com",
     port: 5432,
-    // max: config.db.max,
-    // ssl: config.db.ssl,
-    // idleTimeoutMillis: config.db.idleTimeoutMillis
+    ssl: {
+      require: true, 
+      rejectUnauthorized: false
+    },
 }
 
 const pool = new Pool(pgconfig);
