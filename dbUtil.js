@@ -3,10 +3,10 @@ const config = require('./config.js');
 const logger = require('./logger');
 
 const pgconfig = {
-    user: "rwqquhmuvvmgac",
-    database: "dbh7sli0uramjs",
-    password: "b31a33b858b23a4d8eb9962fb7e73a6f3523c329b95811e44c94e5f6c4325a5c",
-    host: "ec2-52-213-173-172.eu-west-1.compute.amazonaws.com",
+    user: "zbmfjlqxkczvbd",
+    database: "d2io2vd699jklc",
+    password: "5556087daa58e4298251977d613cc430fd85062ded72a5c3f7057ff4608b37c6",
+    host: "ec2-34-250-92-138.eu-west-1.compute.amazonaws.com",
     port: 5432,
     ssl: {
       require: true, 
